@@ -9,13 +9,14 @@ from constants import (
     H2S_EMISSION_ESTIMATE,
 )
 
+
 def calculate_tank_requirements(user_inputs):
     """Perform calculations for septic tank design."""
     # Unpack inputs
     household_size = user_inputs["household_size"]
     wastewater_flow = user_inputs["wastewater_flow"]
     retention_time = user_inputs["retention_time"]
-    soil_type = user_inputs.get("soil_type", None)
+    soil_type = user_inputs.get("soil_type")
     prone_to_flooding = user_inputs.get("prone_to_flooding", False)
 
     # Calculate basic metrics
@@ -55,11 +56,11 @@ def calculate_tank_requirements(user_inputs):
 
     # Output dictionary
     results = {
-        "Volume of Liquid (L/day)": daily_flow,
-        "Total Tank Volume (L)": adjusted_tank_volume,
-        "Volume of Sludge (L)": sludge_volume,
-        "H2S Emissions (g/day)": h2s_emissions,
-        "Sand Thickness (m)": sand_thickness,
+        "Daily Flow (L/day)": round(daily_flow, 2),
+        "Total Tank Volume": round(adjusted_tank_volume, 2),
+        "Volume of Sludge": round(sludge_volume, 2),
+        "H2S Emissions (g/day)": round(h2s_emissions, 2),
+        "Sand Thickness (m)": round(sand_thickness, 2),
         "Tank Dimensions": {
             "Width (m)": round(tank_width, 2),
             "Height (m)": round(tank_height, 2),

@@ -6,6 +6,45 @@
     <title>Knowledge Guide</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #e8f1fc, #ffffff);
+        }
+
+        .knowledge-container {
+            margin-top: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .knowledge-container h1, .knowledge-container h3 {
+            color: #004aad;
+        }
+
+        .knowledge-container ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .knowledge-container ul li {
+            margin-bottom: 10px;
+        }
+
+        .knowledge-container ul li strong {
+            color: #004aad;
+        }
+
+        .knowledge-container p {
+            line-height: 1.6;
+        }
+
+        .nested-list {
+            margin-left: 20px;
+        }
+    </style>
 </head>
 <body>
     <!-- Sidebar -->
@@ -17,9 +56,10 @@
         <a href="#">Results</a>
     </div>
 
+    <!-- Main Content -->
     <div class="container mt-4">
-        <h1 class="text-center mb-4">Knowledge Guide</h1>
-        <div class="card p-4 shadow">
+        <div class="knowledge-container">
+            <h1 class="text-center mb-4">Knowledge Guide</h1>
             <p>Welcome to the knowledge guide for septic tank design! Here, you'll learn about the basics of septic tanks, including their purpose, components, and considerations for designing an efficient system.</p>
             
             <h3>What is a Septic Tank?</h3>
@@ -36,10 +76,10 @@
                 <li><strong>Wastewater Flow:</strong> Average wastewater flow per person ranges between 50–200 L/day.</li>
                 <li><strong>Retention Time:</strong> Retention time is typically 1–2 days to allow for proper separation and treatment.</li>
                 <li><strong>Soil Type:</strong> Determines the absorption rate in the leach field:
-                    <ul>
-                        <li>Sandy soils: High percolation rates (100+ L/m²/day).</li>
-                        <li>Loam soils: Moderate percolation rates (20–60 L/m²/day).</li>
-                        <li>Clay soils: Low percolation rates (5–20 L/m²/day).</li>
+                    <ul class="nested-list">
+                        <li><strong>Sandy soils:</strong> High percolation rates (100+ L/m²/day).</li>
+                        <li><strong>Loam soils:</strong> Moderate percolation rates (20–60 L/m²/day).</li>
+                        <li><strong>Clay soils:</strong> Low percolation rates (5–20 L/m²/day).</li>
                     </ul>
                 </li>
             </ul>
