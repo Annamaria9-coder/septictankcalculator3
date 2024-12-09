@@ -17,6 +17,7 @@ body {
     background-color: #007bff; /* Light blue sidebar */
     padding-top: 20px;
     color: #fff;
+    overflow-y: auto;
 }
 
 .sidebar h2 {
@@ -41,10 +42,38 @@ body {
     transform: translateX(5px);
 }
 
+/* Hides the sidebar on mobile by default */
+.sidebar.closed {
+    display: none;
+}
+
+/* Sidebar Toggle Button */
+.sidebar-toggle {
+    display: none;
+    background-color: #ffeb3b; /* Bright yellow */
+    color: #007bff;
+    border: none;
+    padding: 10px 20px;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
 /* Container Styles */
 .container {
     margin-left: 270px;
     padding: 20px;
+}
+
+/* Card Styles for Forms */
+.card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Buttons */
@@ -65,13 +94,6 @@ button:hover {
 }
 
 /* Form Styles */
-form {
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
 form label {
     font-weight: bold;
     margin-top: 10px;
@@ -112,19 +134,14 @@ form input:focus, form select:focus {
     border: 1px solid #ffeeba;
 }
 
-/* Sidebar Toggle Button */
-.sidebar-toggle {
-    display: none;
-    background-color: #ffeb3b; /* Bright yellow */
-    color: #007bff;
-    border: none;
-    padding: 10px 20px;
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    z-index: 1000;
-    border-radius: 5px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+/* Footer Styles */
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #007bff; /* Footer matches sidebar color */
+    color: #fff;
+    margin-top: 20px;
+    font-size: 0.85rem;
 }
 
 /* Responsive Design */
@@ -134,20 +151,23 @@ form input:focus, form select:focus {
     }
 
     .container {
-        margin-left: 220px;
+        margin-left: 0;
+        padding: 10px;
     }
 
     .sidebar-toggle {
         display: block;
     }
-}
 
-/* Footer Styles */
-footer {
-    text-align: center;
-    padding: 10px 0;
-    background-color: #007bff; /* Footer matches sidebar color */
-    color: #fff;
-    margin-top: 20px;
-    font-size: 0.85rem;
+    .sidebar {
+        position: absolute;
+        z-index: 1000;
+        height: 100%;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
 }

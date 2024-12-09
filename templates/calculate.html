@@ -47,6 +47,10 @@
                             <input type="number" id="wastewater_flow" name="wastewater_flow" class="form-control" placeholder="E.g., 150" required>
                         </div>
                         <div class="mb-3">
+                            <label for="retention_time">Retention Time (days):</label>
+                            <input type="number" step="0.1" id="retention_time" name="retention_time" class="form-control" placeholder="E.g., 2.0" required>
+                        </div>
+                        <div class="mb-3">
                             <label for="seasonal_factor">Seasonal Factor:</label>
                             <input type="number" step="0.01" id="seasonal_factor" name="seasonal_factor" class="form-control" placeholder="E.g., 1.2" required>
                         </div>
@@ -90,6 +94,10 @@
                                 <option value="upstream">Upstream</option>
                                 <option value="downstream">Downstream</option>
                             </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="soil_percolation_rate">Soil Percolation Rate (L/m²/day):</label>
+                            <input type="number" step="0.1" id="soil_percolation_rate" name="soil_percolation_rate" class="form-control" placeholder="E.g., 30">
                         </div>
                     </div>
 
