@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Septic Tank Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f9fc;
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .results-container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .results-container h4 {
+            margin-bottom: 15px;
+        }
+
+        .btn-primary {
+            width: 100%;
+            border-radius: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .form-section, .results-section {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <!-- Input Section -->
+        <div class="col-md-6 form-section">
+            <div class="card p-4">
+                <h3 class="text-center mb-4">Septic Tank Input Parameters</h3>
+
+                <!-- Flash Messages -->
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+
+                <form action="/calculate" method="post" id="calculation-form">
+                    <!-- Tank Type -->
+                    <div class="mb-3">
+                        <label for="tank_type">Tank Type:</label>
+                        <select id="tank_type" name="tank_type" class="form-select" onchange="toggleInputs()" required>
+                            <option value="">-- Select Tank Type --</option>
+                            <option value="3">3-Chambered Tank</option>
+                            <option value="4">4-Chambered Tank</option>
+                        </select>
+                    </div>
+
+                    <!-- Common Inputs -->
+                    <div id="common-inputs">
+                        <div class="mb-3">
+                            <label for="household_size">Household Size (Number of people):</label>
+                            <input type="number" id="household_size" name="household_size" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="seasonal_factor">Seasonal Factor:</label>
+                            <input type="number" step="0.01" id="seasonal_factor" name="seasonal_factor" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="effluent_reuse">Effluent Reuse:</label>
+                            <select id="effluent_reuse" name="effluent_reuse" class="form-select" required>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="flooding_risk">Prone to Seasonal Flooding:</label>
+                            <select id="flooding_risk" name="flooding_risk" class="form-select" required>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- 3-Chambered Tank Inputs -->
+                    <div id="three-chamber-inputs" style="display: none;">
+                        <div class="mb-3">
+                            <label for="soil_type">Soil Type:</label>
+                            <select id="soil_type" name="soil_type" class="form-select">
+                                <option value="sandy">Sandy</option>
+                                <option value="loam">Loam</option>
+                                <option value="clay">Clay</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="groundwater_depth">Groundwater Depth (meters):</label>
+                            <input type="number" step="0.01" id="groundwater_depth" name="groundwater_depth" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label for="borehole_distance">Distance to Borehole (meters):</label>
+                            <input type="number" id="borehole_distance" name="borehole_distance" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label for="groundwater_flow">Groundwater Flow Direction:</label>
+                            <select id="groundwater_flow" name="groundwater_flow" class="form-select">
+                                <option value="upstream">Upstream</option>
+                                <option value="downstream">Downstream</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mt-3">Calculate</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Output Section -->
+        <div class="col-md-6 results-section">
+            <div class="results-container">
+                <h4>Results</h4>
+                {% if results %}
+                    <ul class="list-group">
+                        {% for key, value in results.items() %}
+                            <li class="list-group-item">
+                                <strong>{{ key }}:</strong> {{ value }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p class="text-muted">Results will appear here after you calculate.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript for Dynamic Inputs -->
+<script>
+    function toggleInputs() {
+        const tankType = document.getElementById('tank_type').value;
+        const threeChamberInputs = document.getElementById('three-chamber-inputs');
+
+        if (tankType === "3") {
+            threeChamberInputs.style.display = "block";
+        } else {
+            threeChamberInputs.style.display = "none";
+        }
+    }
+</script>
+
+</body>
+</html>
