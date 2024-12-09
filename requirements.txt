@@ -1,0 +1,5 @@
+Flask==2.3.2
+Flask-WTF==1.1.1
+numpy==1.26.0
+matplotlib==3.8.0
+gunicorn==21.2.0
