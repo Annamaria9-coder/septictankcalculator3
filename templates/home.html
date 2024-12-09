@@ -6,6 +6,29 @@
     <title>Home</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .welcome-section {
+            background: linear-gradient(to bottom, #e8f1fc, #ffffff);
+            text-align: center;
+            padding: 50px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .welcome-section h1 {
+            font-size: 2.5em;
+            color: #004aad;
+        }
+        .welcome-section p {
+            font-size: 1.2em;
+            color: #555555;
+        }
+        .welcome-buttons {
+            margin-top: 20px;
+        }
+        .welcome-buttons a {
+            margin: 0 10px;
+        }
+    </style>
 </head>
 <body>
     <!-- Sidebar -->
@@ -17,9 +40,19 @@
         <a href="/results">Results</a>
     </div>
 
-    <div class="container">
-        <h1 class="text-center">Welcome to the Septic Calculator</h1>
-        <p>This tool helps you design efficient septic tanks by calculating essential parameters based on user inputs. Explore the calculator or read the knowledge guide to learn more about septic tank design!</p>
+    <!-- Main Content -->
+    <div class="container mt-4">
+        <div class="welcome-section">
+            <h1>Welcome to the Septic Calculator</h1>
+            <p>
+                This tool helps you design efficient septic tanks by calculating essential parameters based on user inputs. 
+                Explore the calculator or read the knowledge guide to learn more about septic tank design!
+            </p>
+            <div class="welcome-buttons">
+                <a href="/calculate" class="btn btn-primary">Go to Calculator</a>
+                <a href="/knowledge" class="btn btn-secondary">Read Knowledge Guide</a>
+            </div>
+        </div>
     </div>
 </body>
 </html>

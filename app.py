@@ -22,6 +22,7 @@ def calculate():
             seasonal_factor = float(request.form.get('seasonal_factor', 1.0))
             effluent_reuse = request.form.get('effluent_reuse') == "yes"
             prone_to_flooding = request.form.get('flooding_risk') == "yes"
+            wastewater_flow = float(request.form.get('wastewater_flow', 0))  # Added input
 
             # Initialize optional inputs
             soil_type = request.form.get('soil_type', None)
@@ -76,6 +77,7 @@ def calculate():
                 "seasonal_factor": seasonal_factor,
                 "effluent_reuse": effluent_reuse,
                 "prone_to_flooding": prone_to_flooding,
+                "wastewater_flow": wastewater_flow,
             }
 
             # Perform calculations

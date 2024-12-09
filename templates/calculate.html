@@ -5,46 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Septic Tank Calculator</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        /* Custom Styling */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f7f9fc;
-        }
-
-        .container {
-            margin-top: 20px;
-        }
-
-        .card {
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .results-container {
-            background-color: #ffffff;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .results-container h4 {
-            margin-bottom: 15px;
-        }
-
-        .btn-primary {
-            width: 100%;
-            border-radius: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .form-section, .results-section {
-                margin-bottom: 20px;
-            }
-        }
-    </style>
 </head>
 <body>
 
@@ -79,11 +40,15 @@
                     <div id="common-inputs">
                         <div class="mb-3">
                             <label for="household_size">Household Size (Number of people):</label>
-                            <input type="number" id="household_size" name="household_size" class="form-control" required>
+                            <input type="number" id="household_size" name="household_size" class="form-control" placeholder="E.g., 4" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="wastewater_flow">Average Wastewater Flow per Person (L/day):</label>
+                            <input type="number" id="wastewater_flow" name="wastewater_flow" class="form-control" placeholder="E.g., 150" required>
                         </div>
                         <div class="mb-3">
                             <label for="seasonal_factor">Seasonal Factor:</label>
-                            <input type="number" step="0.01" id="seasonal_factor" name="seasonal_factor" class="form-control" required>
+                            <input type="number" step="0.01" id="seasonal_factor" name="seasonal_factor" class="form-control" placeholder="E.g., 1.2" required>
                         </div>
                         <div class="mb-3">
                             <label for="effluent_reuse">Effluent Reuse:</label>
@@ -113,11 +78,11 @@
                         </div>
                         <div class="mb-3">
                             <label for="groundwater_depth">Groundwater Depth (meters):</label>
-                            <input type="number" step="0.01" id="groundwater_depth" name="groundwater_depth" class="form-control">
+                            <input type="number" step="0.01" id="groundwater_depth" name="groundwater_depth" class="form-control" placeholder="E.g., 1.5">
                         </div>
                         <div class="mb-3">
                             <label for="borehole_distance">Distance to Borehole (meters):</label>
-                            <input type="number" id="borehole_distance" name="borehole_distance" class="form-control">
+                            <input type="number" id="borehole_distance" name="borehole_distance" class="form-control" placeholder="E.g., 50">
                         </div>
                         <div class="mb-3">
                             <label for="groundwater_flow">Groundwater Flow Direction:</label>

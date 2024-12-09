@@ -6,6 +6,42 @@
     <title>Septic Tank Results</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- For Graphs -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #e8f1fc, #ffffff);
+        }
+
+        .results-container {
+            margin-top: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .results-container h3 {
+            color: #004aad;
+        }
+
+        .chart-container {
+            margin-top: 20px;
+        }
+
+        .back-button {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .back-button a {
+            text-decoration: none;
+            color: #ffffff;
+            background-color: #004aad;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
     <!-- Sidebar -->
@@ -17,9 +53,10 @@
         <a href="#">Results</a>
     </div>
 
+    <!-- Main Container -->
     <div class="container mt-4">
         <h1 class="text-center mb-4">Calculation Results</h1>
-        <div class="card p-4 shadow">
+        <div class="results-container">
             {% if results %}
                 <h3>Summary:</h3>
                 <ul class="list-group">
@@ -41,10 +78,50 @@
                         </ul>
                     </li>
                 </ul>
+
+                <!-- Graph Section -->
+                <div class="chart-container">
+                    <canvas id="resultsChart"></canvas>
+                </div>
             {% else %}
-                <p>No results to display. Please go back and calculate again.</p>
+                <p class="text-center">No results to display. Please go back and calculate again.</p>
+                <div class="back-button">
+                    <a href="/calculate">Go Back to Calculator</a>
+                </div>
             {% endif %}
         </div>
     </div>
+
+    <!-- Chart.js Script -->
+    <script>
+        // Only initialize chart if results are present
+        {% if results %}
+        const ctx = document.getElementById('resultsChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Volume of Liquid', 'Volume of Sludge', 'Total Tank Volume', 'Retention Time'],
+                datasets: [{
+                    label: 'Septic Tank Metrics',
+                    data: [
+                        {{ results["Volume of Liquid"] }},
+                        {{ results["Volume of Sludge"] }},
+                        {{ results["Total Tank Volume"] }},
+                        {{ results["Retention Time"] }}
+                    ],
+                    backgroundColor: ['#004aad', '#0177fc', '#66b3ff', '#99ccff']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true
+                    }
+                }
+            }
+        });
+        {% endif %}
+    </script>
 </body>
 </html>

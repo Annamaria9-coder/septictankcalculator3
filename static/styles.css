@@ -3,7 +3,7 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f8f9fa;
+    background-color: #eaf4fb; /* Light blue background */
     color: #212529;
 }
 
@@ -14,15 +14,16 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #343a40;
+    background-color: #007bff; /* Light blue sidebar */
     padding-top: 20px;
     color: #fff;
 }
 
 .sidebar h2 {
     text-align: center;
-    color: #ffc107;
+    color: #ffeb3b; /* Yellow title */
     margin-bottom: 20px;
+    font-size: 1.5rem;
 }
 
 .sidebar a {
@@ -31,11 +32,13 @@ body {
     padding: 10px 20px;
     text-decoration: none;
     margin-bottom: 5px;
-    transition: background-color 0.3s;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 .sidebar a:hover {
-    background-color: #495057;
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: translateX(5px);
 }
 
 /* Container Styles */
@@ -47,35 +50,81 @@ body {
 /* Buttons */
 button {
     cursor: pointer;
-    transition: background-color 0.3s;
+    background-color: #007bff; /* Primary button color */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 /* Form Styles */
+form {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
 form label {
     font-weight: bold;
     margin-top: 10px;
+    display: block;
 }
 
 form input, form select {
-    margin-bottom: 10px;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+}
+
+form input:focus, form select:focus {
+    border-color: #007bff; /* Focus highlight */
+    outline: none;
 }
 
 /* Flash Messages */
 .alert {
     margin-bottom: 20px;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 0.9rem;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.alert-warning {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
 }
 
 /* Sidebar Toggle Button */
 .sidebar-toggle {
     display: none;
-    background-color: #ffc107;
-    color: #343a40;
+    background-color: #ffeb3b; /* Bright yellow */
+    color: #007bff;
     border: none;
     padding: 10px 20px;
     position: fixed;
     top: 20px;
     left: 20px;
     z-index: 1000;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Responsive Design */
@@ -91,4 +140,14 @@ form input, form select {
     .sidebar-toggle {
         display: block;
     }
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #007bff; /* Footer matches sidebar color */
+    color: #fff;
+    margin-top: 20px;
+    font-size: 0.85rem;
 }
