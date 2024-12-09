@@ -41,6 +41,20 @@
             padding: 10px 20px;
             border-radius: 5px;
         }
+
+        /* 3D Visualization Section */
+        .visualization {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .visualization iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 <body>
@@ -60,28 +74,20 @@
             {% if results %}
                 <h3>Summary:</h3>
                 <ul class="list-group">
-                    <li class="list-group-item"><strong>Volume of Liquid:</strong> {{ results["Volume of Liquid"] }} L</li>
-                    <li class="list-group-item"><strong>Volume of Sludge:</strong> {{ results["Volume of Sludge"] }} L</li>
-                    <li class="list-group-item"><strong>Retention Time:</strong> {{ results["Retention Time"] }} days</li>
-                    <li class="list-group-item"><strong>Total Tank Volume:</strong> {{ results["Total Tank Volume"] }} L</li>
-                    <li class="list-group-item"><strong>H2S Emissions:</strong> {{ results["H2S Emissions"] }} g/day</li>
-                    <li class="list-group-item"><strong>Sand Thickness:</strong> {{ results["Sand Thickness"] }} m</li>
-                    {% if results["Leach Field Area"] %}
-                        <li class="list-group-item"><strong>Leach Field Area:</strong> {{ results["Leach Field Area"] }} m²</li>
-                    {% endif %}
-                    <li class="list-group-item"><strong>Groundwater Safety:</strong> {{ results["Groundwater Safety"] }}</li>
-                    <li class="list-group-item"><strong>Tank Dimensions:</strong>
-                        <ul>
-                            <li>Width: {{ results["Tank Width"] }} m</li>
-                            <li>Height: {{ results["Tank Height"] }} m</li>
-                            <li>Depth: {{ results["Tank Depth"] }} m</li>
-                        </ul>
-                    </li>
+                    {% for key, value in results.items() %}
+                        <li class="list-group-item"><strong>{{ key }}:</strong> {{ value }}</li>
+                    {% endfor %}
                 </ul>
 
                 <!-- Graph Section -->
                 <div class="chart-container">
                     <canvas id="resultsChart"></canvas>
+                </div>
+
+                <!-- 3D Visualization -->
+                <div class="visualization">
+                    <h3>3D Visualization:</h3>
+                    <iframe src="https://example-3d-visualization.com/embed"></iframe> <!-- Replace with your actual 3D visualization URL -->
                 </div>
             {% else %}
                 <p class="text-center">No results to display. Please go back and calculate again.</p>
@@ -100,16 +106,14 @@
         new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Volume of Liquid', 'Volume of Sludge', 'Total Tank Volume', 'Retention Time'],
+                labels: Object.keys({{ results | tojson }}), // Dynamically generate labels from results
                 datasets: [{
                     label: 'Septic Tank Metrics',
-                    data: [
-                        {{ results["Volume of Liquid"] }},
-                        {{ results["Volume of Sludge"] }},
-                        {{ results["Total Tank Volume"] }},
-                        {{ results["Retention Time"] }}
-                    ],
-                    backgroundColor: ['#004aad', '#0177fc', '#66b3ff', '#99ccff']
+                    data: Object.values({{ results | tojson }}), // Dynamically generate data
+                    backgroundColor: [
+                        '#004aad', '#0177fc', '#66b3ff', '#99ccff', '#80e0ff',
+                        '#ffcccb', '#ffcc80', '#ffd966', '#d9ff80', '#b3ffcc'
+                    ]
                 }]
             },
             options: {

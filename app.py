@@ -22,8 +22,8 @@ def calculate():
             seasonal_factor = float(request.form.get('seasonal_factor', 1.0))
             effluent_reuse = request.form.get('effluent_reuse') == "yes"
             prone_to_flooding = request.form.get('flooding_risk') == "yes"
-            wastewater_flow = float(request.form.get('wastewater_flow', 0))  # Added input
-            retention_time = float(request.form.get('retention_time', 0))  # Added input
+            wastewater_flow = float(request.form.get('wastewater_flow', 0))
+            retention_time = float(request.form.get('retention_time', 0))
 
             # Initialize optional inputs
             soil_type = request.form.get('soil_type', None)
@@ -85,8 +85,14 @@ def calculate():
             # Perform calculations
             results = calculate_tank_requirements(user_inputs)
 
-            # Render the results page with calculated data
-            return render_template('result.html', results=results)
+            # Prepare data for graph rendering
+            graph_data = {
+                "labels": list(results.keys()),
+                "values": list(results.values()),
+            }
+
+            # Render the results page with calculated data and graph data
+            return render_template('result.html', results=results, graph_data=graph_data)
 
         except ValueError as ve:
             flash(f"Invalid input: {str(ve)}. Please enter valid numerical values.", "danger")
