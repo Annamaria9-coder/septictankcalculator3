@@ -23,6 +23,7 @@ def calculate():
             effluent_reuse = request.form.get('effluent_reuse') == "yes"
             prone_to_flooding = request.form.get('flooding_risk') == "yes"
             wastewater_flow = float(request.form.get('wastewater_flow', 0))  # Added input
+            retention_time = float(request.form.get('retention_time', 0))  # Added input
 
             # Initialize optional inputs
             soil_type = request.form.get('soil_type', None)
@@ -78,6 +79,7 @@ def calculate():
                 "effluent_reuse": effluent_reuse,
                 "prone_to_flooding": prone_to_flooding,
                 "wastewater_flow": wastewater_flow,
+                "retention_time": retention_time,
             }
 
             # Perform calculations
