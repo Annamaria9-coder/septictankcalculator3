@@ -4,11 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Knowledge Guide</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h1>Knowledge Guide</h1>
-        <p>This page explains how septic tanks work...</p>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Septic Calculator</h2>
+        <a href="/">Home</a>
+        <a href="/calculate">Calculator</a>
+        <a href="/knowledge">Knowledge Guide</a>
+        <a href="#">Results</a>
+    </div>
+
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">Knowledge Guide</h1>
+        <div class="card p-4 shadow">
+            <p>Welcome to the knowledge guide for septic tank design! Here, you'll learn about the basics of septic tanks, including their purpose, components, and considerations for designing an efficient system.</p>
+            
+            <h3>What is a Septic Tank?</h3>
+            <p>A septic tank is an underground system that treats wastewater from households. It separates waste into three layers: <strong>scum</strong> (top layer), <strong>liquid effluent</strong> (middle layer), and <strong>sludge</strong> (bottom layer).</p>
+            
+            <h3>Types of Septic Tanks</h3>
+            <ul>
+                <li><strong>3-Chambered Septic Tank:</strong> Used when effluent is absorbed into the soil via a leach field.</li>
+                <li><strong>4-Chambered Septic Tank:</strong> Includes a final chamber for treated water to be reused.</li>
+            </ul>
+
+            <h3>Important Factors</h3>
+            <ul>
+                <li><strong>Wastewater Flow:</strong> Average wastewater flow per person ranges between 50–200 L/day.</li>
+                <li><strong>Retention Time:</strong> Retention time is typically 1–2 days to allow for proper separation and treatment.</li>
+                <li><strong>Soil Type:</strong> Determines the absorption rate in the leach field:
+                    <ul>
+                        <li>Sandy soils: High percolation rates (100+ L/m²/day).</li>
+                        <li>Loam soils: Moderate percolation rates (20–60 L/m²/day).</li>
+                        <li>Clay soils: Low percolation rates (5–20 L/m²/day).</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>Mixed Media Filtration</h3>
+            <p>Mixed media, such as sand, charcoal, and coconut husks, further filter the effluent before it exits the septic tank. Each layer performs a specific function, such as reducing odor or filtering solids.</p>
+            
+            <h3>Environmental Safety</h3>
+            <p>Ensure the septic tank is located at a safe distance from water sources like boreholes to prevent contamination. Groundwater flow direction and depth are critical considerations.</p>
+        </div>
     </div>
 </body>
 </html>

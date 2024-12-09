@@ -1,12 +1,94 @@
+/* General Styles */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #f8f9fa;
+    color: #212529;
 }
 
+/* Sidebar Styles */
+.sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #343a40;
+    padding-top: 20px;
+    color: #fff;
+}
+
+.sidebar h2 {
+    text-align: center;
+    color: #ffc107;
+    margin-bottom: 20px;
+}
+
+.sidebar a {
+    display: block;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    margin-bottom: 5px;
+    transition: background-color 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: #495057;
+}
+
+/* Container Styles */
 .container {
-    width: 80%;
-    margin: auto;
+    margin-left: 270px;
     padding: 20px;
+}
+
+/* Buttons */
+button {
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Form Styles */
+form label {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+form input, form select {
+    margin-bottom: 10px;
+}
+
+/* Flash Messages */
+.alert {
+    margin-bottom: 20px;
+}
+
+/* Sidebar Toggle Button */
+.sidebar-toggle {
+    display: none;
+    background-color: #ffc107;
+    color: #343a40;
+    border: none;
+    padding: 10px 20px;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    .container {
+        margin-left: 220px;
+    }
+
+    .sidebar-toggle {
+        display: block;
+    }
 }

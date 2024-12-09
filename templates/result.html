@@ -3,17 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Results</title>
+    <title>Septic Tank Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h1>Calculation Results</h1>
-        <ul>
-            {% for key, value in results.items() %}
-            <li>{{ key }}: {{ value }}</li>
-            {% endfor %}
-        </ul>
-        <a href="/">Go Back</a>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Septic Calculator</h2>
+        <a href="/">Home</a>
+        <a href="/calculate">Calculator</a>
+        <a href="/knowledge">Knowledge Guide</a>
+        <a href="#">Results</a>
+    </div>
+
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">Calculation Results</h1>
+        <div class="card p-4 shadow">
+            {% if results %}
+                <h3>Summary:</h3>
+                <ul class="list-group">
+                    <li class="list-group-item"><strong>Volume of Liquid:</strong> {{ results["Volume of Liquid"] }} L</li>
+                    <li class="list-group-item"><strong>Volume of Sludge:</strong> {{ results["Volume of Sludge"] }} L</li>
+                    <li class="list-group-item"><strong>Retention Time:</strong> {{ results["Retention Time"] }} days</li>
+                    <li class="list-group-item"><strong>Total Tank Volume:</strong> {{ results["Total Tank Volume"] }} L</li>
+                    <li class="list-group-item"><strong>H2S Emissions:</strong> {{ results["H2S Emissions"] }} g/day</li>
+                    <li class="list-group-item"><strong>Sand Thickness:</strong> {{ results["Sand Thickness"] }} m</li>
+                    {% if results["Leach Field Area"] %}
+                        <li class="list-group-item"><strong>Leach Field Area:</strong> {{ results["Leach Field Area"] }} m²</li>
+                    {% endif %}
+                    <li class="list-group-item"><strong>Groundwater Safety:</strong> {{ results["Groundwater Safety"] }}</li>
+                    <li class="list-group-item"><strong>Tank Dimensions:</strong>
+                        <ul>
+                            <li>Width: {{ results["Tank Width"] }} m</li>
+                            <li>Height: {{ results["Tank Height"] }} m</li>
+                            <li>Depth: {{ results["Tank Depth"] }} m</li>
+                        </ul>
+                    </li>
+                </ul>
+            {% else %}
+                <p>No results to display. Please go back and calculate again.</p>
+            {% endif %}
+        </div>
     </div>
 </body>
 </html>
